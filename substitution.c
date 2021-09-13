@@ -124,7 +124,7 @@ void convertText(string input, string key)
         {
             newLetter = ((int) input[i]) + shiftAmount[(int) input[i] - 65];
         }
-        else if (ispunct(input[i]) || isspace(input[i]))
+        else if (ispunct(input[i]) || isspace(input[i]) || isdigit(input[i]))
         {
             newLetter = input[i];
         }
