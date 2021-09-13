@@ -6,7 +6,7 @@
 #include <ctype.h>
 
 int detectDuplicateCharacters(string input); // function prototypes
-string convertText(string input);
+void convertText(string input, string key);
 
 int main(int argc, string argv[])
 {
@@ -41,6 +41,12 @@ int main(int argc, string argv[])
     }
     // gets plaintext string from user
     string plaintext = get_string("plaintext: ");
+
+    printf("ciphertext: ");
+
+    convertText(plaintext, key);
+
+    printf("\n");
     
 }
 
@@ -86,12 +92,41 @@ int detectDuplicateCharacters(string input)
     }
 }
 
-string convertText(string input)
+void convertText(string input, string key)
 {
-    int shiftAmount[26] = {0};
+    int shiftAmount[26] = {0}; // create shift amount array and output string
+    char lowerLetters[26] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+    char upperLetters[26] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
+
+    for (int i = 0, n = strlen(key); i < n; i++)
+    {
+        if (islower(key[i]))
+        {
+            shiftAmount[i] = abs(((int) tolower(key[i])) - ((int) lowerLetters[i]));
+        }
+        else if (isupper(input[i]))
+        {
+            shiftAmount[i] = abs(((int) toupper(key[i])) - ((int) upperLetters[i]));
+        }
+    }
 
     for (int i = 0, n = strlen(input); i < n; i++)
     {
+        char newLetter = 'x';
         
+        if (islower(input[i]))
+        {
+            newLetter = ((int) input[i]) + shiftAmount[(int) input[i] - 97];
+        }
+        else if (isupper(input[i]))
+        {
+            newLetter = ((int) input[i]) + shiftAmount[(int) input[i] - 65];
+        }
+        else if (ispunct(input[i]) || isspace(input[i]))
+        {
+            newLetter = input[i];
+        }
+
+        printf("%c", newLetter);
     }
 }
