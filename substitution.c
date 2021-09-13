@@ -36,7 +36,7 @@ int main(int argc, string argv[])
 
     if (duplicateFailure == 1)
     {
-        return 0;
+        return 1;
     }
 
     string plaintext = get_string("plaintext: ");
