@@ -96,7 +96,7 @@ int detectDuplicateCharacters(string input)
 
 void convertText(string input, string key)
 {
-    int shiftAmount[26] = {0}; // create shift amount array and letter comparing arrays
+    int shiftAmount[26] = {0}; // create shift amount array and letter-comparing arrays
     char lowerLetters[26] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
     char upperLetters[26] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
 
@@ -104,11 +104,11 @@ void convertText(string input, string key)
     {
         if (islower(key[i]))
         {
-            shiftAmount[i] = abs(((int) tolower(key[i])) - ((int) lowerLetters[i]));
+            shiftAmount[i] = (((int) tolower(key[i])) - ((int) lowerLetters[i]));
         }
-        else if (isupper(input[i]))
+        else if (isupper(key[i]))
         {
-            shiftAmount[i] = abs(((int) toupper(key[i])) - ((int) upperLetters[i]));
+            shiftAmount[i] = (((int) toupper(key[i])) - ((int) upperLetters[i]));
         }
     }
 
@@ -118,11 +118,33 @@ void convertText(string input, string key)
         
         if (islower(input[i]))
         {
-            newLetter = ((int) input[i]) + shiftAmount[(int) input[i] - 97];
+            if ((int) tolower(key[i]) < (int) lowerLetters[i])
+            {
+                newLetter = (((int) input[i]) + shiftAmount[(int) input[i] - 97]);
+            }
+            else if ((int) tolower(key[i]) > (int) lowerLetters[i])
+            {
+                newLetter = (((int) input[i]) + shiftAmount[(int) input[i] - 97]);
+            }
+            else if ((int) tolower(key[i]) == (int) lowerLetters[i])
+            {
+                newLetter = tolower(key[i]);
+            }
         }
         else if (isupper(input[i]))
         {
-            newLetter = ((int) input[i]) + shiftAmount[(int) input[i] - 65];
+            if ((int) toupper(key[i]) < (int) upperLetters[i])
+            {
+                newLetter = (((int) input[i]) + shiftAmount[(int) input[i] - 65]);
+            }
+            else if ((int) toupper(key[i]) > (int) upperLetters[i])
+            {
+                newLetter = (((int) input[i]) + shiftAmount[(int) input[i] - 65]);
+            }
+            else if ((int) toupper(key[i]) == (int) upperLetters[i])
+            {
+                newLetter = toupper(key[i]);
+            } 
         }
         else if (ispunct(input[i]) || isspace(input[i]) || isdigit(input[i]))
         {
