@@ -88,7 +88,7 @@ int detectDuplicateCharacters(string input)
 
 string convertText(string input)
 {
-    int shiftAmount;
+    int shiftAmount[26] = {0};
 
     for (int i = 0, n = strlen(input); i < n; i++)
     {
