@@ -41,7 +41,7 @@ int main(int argc, string argv[])
     }
     // gets plaintext string from user
     string plaintext = get_string("plaintext: ");
-
+    // print ciphertext
     printf("ciphertext: ");
 
     convertText(plaintext, key);
@@ -94,11 +94,11 @@ int detectDuplicateCharacters(string input)
 
 void convertText(string input, string key)
 {
-    int shiftAmount[26] = {0}; // create shift amount array and output string
+    int shiftAmount[26] = {0}; // create shift amount array and letter comparing arrays
     char lowerLetters[26] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
     char upperLetters[26] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
 
-    for (int i = 0, n = strlen(key); i < n; i++)
+    for (int i = 0, n = strlen(key); i < n; i++) // for every char in alphabet, calculate shift amount
     {
         if (islower(key[i]))
         {
@@ -110,9 +110,9 @@ void convertText(string input, string key)
         }
     }
 
-    for (int i = 0, n = strlen(input); i < n; i++)
+    for (int i = 0, n = strlen(input); i < n; i++) // for every char in input string, shift char by key amount
     {
-        char newLetter = 'x';
+        char newLetter = 'x'; 
         
         if (islower(input[i]))
         {
@@ -127,6 +127,6 @@ void convertText(string input, string key)
             newLetter = input[i];
         }
 
-        printf("%c", newLetter);
+        printf("%c", newLetter); // print converted char
     }
 }
