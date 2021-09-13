@@ -47,6 +47,8 @@ int main(int argc, string argv[])
     convertText(plaintext, key);
 
     printf("\n");
+
+    return 0;
     
 }
 
