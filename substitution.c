@@ -5,7 +5,8 @@
 #include <math.h>
 #include <ctype.h>
 
-int detectDuplicateCharacters(string input); // function prototype
+int detectDuplicateCharacters(string input); // function prototypes
+string convertText(string input);
 
 int main(int argc, string argv[])
 {
@@ -40,7 +41,7 @@ int main(int argc, string argv[])
     }
     // gets plaintext string from user
     string plaintext = get_string("plaintext: ");
-
+    
 }
 
 int detectDuplicateCharacters(string input)
@@ -82,5 +83,15 @@ int detectDuplicateCharacters(string input)
     else
     {
         return 0;
+    }
+}
+
+string convertText(string input)
+{
+    int shiftAmount;
+
+    for (int i = 0, n = strlen(input); i < n; i++)
+    {
+        
     }
 }
