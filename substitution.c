@@ -32,7 +32,14 @@ int main(int argc, string argv[])
         }
     }
 
-    detectDuplicateCharacters(key);
+    int duplicateFailure = detectDuplicateCharacters(key);
+
+    if (duplicateFailure == 1)
+    {
+        return 0;
+    }
+
+    string plaintext = get_string("plaintext: ");
 
 }
 
